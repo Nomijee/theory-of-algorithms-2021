@@ -1,25 +1,36 @@
 #include <stdio.h>
 
+
+void bin_print(int i){
+    //numbers of bis in an integer.
+    int j = sizeof(int) * 8;
+
+    //Temporary variable 
+    int k;
+
+    for (j-- ; j >= 0; j--){
+        //ternary operator as j++ or J-- above is uni operator  j>=0 is bi condition
+        k = ((1 << j) & i) ? 1:0;
+        printf("%d", k);
+
+    }
+}
 int main(int argc, char *argv[]) {
     
-   //int i= 241;
+    int i= 0xf1;
 
-   int i= 0xF1; //11110001
-   printf("Hex: %X\n", i);
-   printf("Decimal: %d\n", i);
-   printf("Print size of int: %d\n", sizeof(i));
-   printf("Print size of char: %d\n", sizeof(char));
-   printf("Print size of char: %d\n", sizeof(int));
-   
-   char c = 41;
-   printf("c in char is : %c\n", c);
-   printf("c in char is : %d\n", c);
+    printf("Original : ");
 
-   
-   int j = 1000000000;
-   printf("j in char is : %d\n", j);
-   printf("j in char is : %c\n", j);
-   printf("j in int from char is : %d\n", (int) (char) j);
+    bin_print(i);
+    printf("\n");
+
+    //bit shifting <<
+    for (int j = 0; j < 40; j++){
+        printf("%3d << %2d: ", i, j);
+    bin_print(i << j);
+    printf("\n");
+
+    }
     
     return 0;
 }

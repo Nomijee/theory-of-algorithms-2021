@@ -1,3 +1,8 @@
+#local executables
+bitoperations
+
+
+
 # Prerequisites
 *.d
 

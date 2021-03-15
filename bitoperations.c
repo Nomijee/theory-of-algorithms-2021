@@ -21,6 +21,11 @@ void bin_print(unsigned int i){
 }
 //standard main signature
 int main(int argc, char *argv[]) {
+  
+   for (int i = 0; i < argc; i++) {
+        printf("%s\n", argv[i]);
+    }
+    return 0;
 
     //Set i to a literal value.
    unsigned int i= 0x0f0f0f0f;//0xffffffff;//2^32-1 is equal to 4294967295 or //  or //0b11111111111111111111111111111111; 

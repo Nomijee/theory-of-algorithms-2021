@@ -69,6 +69,5 @@ int main(int argc, char *argv[]) {
     printf("Sig1(%08" PF " -> %08" PF "\n", x, Sig1(x));
 
     printf("K[0] = %08" PF "\tK[63] = %08" PF "\n", K[0], K[63]);
-
     return 0;
-}
+}   

@@ -47,10 +47,10 @@ int next_block(FILE *f, union Block *B, enum Status *S, uint64_t *nobits) {
             // This happens when we have enough roof for all the padding.
            
             // Append   1 bit (and seven 0 bits to make a full byte).
-            B->bytes[nobytes++] = 0x80; // In bits: 10000000.
+            B->bytes[nobytes] = 0x80; // In bits: 10000000.
             
             // Append enough 0 bits, leaving 64 at the end.
-            for (; nobytes < 56; nobytes++) {
+            for (nobytes++; nobytes < 56; nobytes++) {
 
                 B->bytes[nobytes] = 0x00; // In bits: 00000000
             }
@@ -66,8 +66,8 @@ int next_block(FILE *f, union Block *B, enum Status *S, uint64_t *nobits) {
             // Append a 1 bit (and seven 0 bits to make a full byte.)
             B->bytes[nobytes] = 0x80;
             // Append 0 bits.
-            while (nobytes++ < 64) {
-                
+              for (nobytes++; nobytes < 64; nobytes++) {
+                 // Error: trying to write to 
                 B->bytes[nobytes] = 0x00; // In bits: 00000000
             }
             // Change the status to PAD.
@@ -120,7 +120,7 @@ int main(int argc, char *argv[]) {
          printf("\n");
     }
     // Close the file.
-    //fclose(f);
+    fclose(f);
       // Print total no. of bits read.
     printf("Total bits read: %d.\n", nobits);
 

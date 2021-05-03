@@ -59,11 +59,36 @@ What happens in a real hash function is that hundreds of one-way operations take
 
 If you start guessing numbers (in the later stages) wrong, you'll end up with an inconsistency in the earlier stages (like 2 + 2 = 53). And you can't solve it by trial and error, because there are simply too many combinations to guess (more than atoms in the known universe, etc) [4]
 
+## Can you design an algorithm that, given enough time, will find input messages that give each of the possible 512-bit strings?
+
+In Theory its not imposible, that's a semi-decidable problem, so the answer is it can be done, if such a message exists for each SHA-512". Just brute force all possible strings, gradually increasing length, and you will get it.The largest SHA-512 message has a bit length of (2xx64) - 1. So try every message of bit length 0, every message of bit length 1, ..., every message of bit length (2xx64) - 1 and you're done.
+
+## How difficult is it to find a hash digest beginning with at least twelve zeros?
+
+First, we need to model SHA-512 as uniform random.
+
+Start hashing random values.
+
+In hex we have 4-bits
+
+#### We would expect about 1 in 2^4 values to have a hash-value with 0x0 at the beginning.
+#### We would expect about 1 in 2^8 values to have a hash-value with 0x00 at the beginning.
+#### We would expect about 1 in 2^12 values to have a hash-value with 0x000 at the beginning.
+
+#### We would expect about 1 in 248 values to have a hash-value with 12 hex zeroes at the beginning.
+#### So we can say that we expect 2^512/2^4⋅k values will have leading k hex zeroes.
+
+###
+1B≈2^30.89  and to see 12 leading zeroes, the experiment must go to 2^48 and that needs still 2^18 more time. It is quite doable with a single CPU, though parallel processing is possible, too. Note that this is a Python experiment and took ~22 minutes for 1B.
+
+For a CPU this may be hard to achieve since SHA-512, although a fast hash function, is still not a simple function to evaluate. If you have a GPU like GTX 1080 then you may reach 2^48 SHA-512 hashing around 36 hours and if you have GTX 3080 then you may need 18 hours.[5]
+
 # References
 1. [(https://brilliant.org/wiki/secure-hashing-algorithms/)]
 2. [https://medium.com/@zaid960928/cryptography-explaining-sha-512-ad896365a0c1]
 3. [https://crypto.stackexchange.com/]
 4. [https://crypto.stackexchange.com/questions/45377/why-cant-we-reverse-hashes]
+5. [https://stackoverflow.com/]
 
 
 
